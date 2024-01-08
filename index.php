@@ -23,9 +23,11 @@ class Quickie {
 				${$name} = $fn instanceof \Closure ?  $fn ->__invoke() : $fn ;
 			}
 
-			$codeString = explode('/*__*/', file_get_contents((new \ReflectionClass($className)) ->getFileName())) [1] ?? NULL  ;
+			$quickieConfig = require './quickieConfig.php' ;
 
-			if (empty($codeString)) throw new \DomainException('MARK EXCEPTION') ;
+			$codeString = explode($quickieConfig ['SEPARATOR'], file_get_contents((new \ReflectionClass($className)) ->getFileName())) [1] ?? NULL  ;
+
+			if (empty($codeString)) throw new \DomainException('NO CODE TO BE EVALUATED. MAKE SURE YOU ARE SETTING SEPARATORS PROPERLY') ;
 
 			$processedString = array_reduce(array_keys($replaceMap), function (string $codeString, string $r) use ($replaceMap) {
 				return str_replace($r, $replaceMap [$r], $codeString); 
@@ -47,7 +49,6 @@ class Quickie {
 		$this ->_replaceMap = $replaceMap ;return $this ; 
 	}
 }
-
 
 
 (new  Quickie(Test::class)) ->__invoke([
