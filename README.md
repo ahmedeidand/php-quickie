@@ -19,7 +19,7 @@ class Test {
 		print('Processing c' . $c . PHP_EOL) ;
 		print('Processing d' . $d . PHP_EOL) ;
 
-		return 'Suscess' ;
+		return 'Success' ;
 
 	}
 }
@@ -29,11 +29,11 @@ class Test {
 
 If we need to check that if statement  `print('Processing b' . $b . PHP_EOL) ;` is working properly or not
 
-In the standard senario, We should prepare the arguments and pass it to the process function on an instance of Test class.
+In the standard scenario, We should prepare the arguments and pass it to the process function on an instance of Test class.
 
-But in our case all we neet is just to put the separator (Which is configurable in quickieConfig.php - set by default to -  /\*__\*/) before and after the code we want to test.
+But in our case all we need is just to put the separator (Which is configurable in quickieConfig.php - set by default to -  /\*__\*/) before and after the code we want to test.
 
-The code after changes shoule be : 
+The code after changes should be : 
 
 
 ```php
